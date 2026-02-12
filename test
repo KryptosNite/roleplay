@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skittles Menu Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0a0e27;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1100px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #4a6fa5 0%, #3a5a8a 100%);
+            border-radius: 18px;
+            padding: 28px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .header {
+            border-bottom: 1.5px solid rgba(255, 255, 255, 0.25);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 3px;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .info-section {
+            background: rgba(0, 0, 0, 0.15);
+            border-left: 3px solid rgba(255, 255, 255, 0.3);
+            padding: 14px 16px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+        }
+
+        .info-line {
+            color: #ffffff;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 5px 0;
+        }
+
+        .price-section {
+            background: rgba(0, 0, 0, 0.15);
+            border-left: 3px solid rgba(255, 255, 255, 0.3);
+            padding: 14px 16px;
+            border-radius: 6px;
+        }
+
+        .price-header {
+            font-size: 1rem;
+            color: #ffffff;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .price-item {
+            color: #ffffff;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 4px 0;
+            padding-left: 5px;
+        }
+
+        .footer {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.9rem;
+            margin-top: 18px;
+            text-align: left;
+        }
+
+        /* Profit Card Styling */
+        .profit-card {
+            background: linear-gradient(135deg, #3a5a8a 0%, #2a4a7a 100%);
+        }
+
+        .calc-line {
+            display: flex;
+            justify-content: space-between;
+            color: #ffffff;
+            font-size: 0.95rem;
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .calc-line.bold {
+            font-weight: 600;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 12px;
+        }
+
+        .highlight {
+            color: #ffd700;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.15);
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Menu Card -->
+        <div class="card">
+            <div class="header">
+                <div class="title">🍬 Skittles</div>
+                <div class="subtitle">Exotic Grade</div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-line">🌈 Hybrid • Sweet Fruity Candy Flavor</div>
+                <div class="info-line">🇦🇺 Premium Quality - 22-26% THC</div>
+                <div class="info-line">✨ Euphoric • Uplifting • Creative Buzz</div>
+                <div class="info-line">✅ Fresh Stock • Top Shelf</div>
+            </div>
+
+            <div class="price-section">
+                <div class="price-header">💰 Prices:</div>
+                <div class="price-item">▫️ 14g - $250</div>
+                <div class="price-item">▫️ 7g - $130</div>
+                <div class="price-item">▫️ 3.5g - $70</div>
+                <div class="price-item">▫️ 1.5g - $40</div>
+            </div>
+
+            <div class="footer">
+                Message for ++
+            </div>
+        </div>
+
+        <!-- Profit Calculator Card -->
+        <div class="card profit-card">
+            <div class="header">
+                <div class="title">💹 Profit Analysis</div>
+                <div class="subtitle">3oz Breakdown</div>
+            </div>
+
+            <div class="info-section">
+                <div class="calc-line">
+                    <span>Cost per oz:</span>
+                    <span>$300</span>
+                </div>
+                <div class="calc-line">
+                    <span>Total ounces:</span>
+                    <span>3oz (84g)</span>
+                </div>
+                <div class="calc-line bold">
+                    <span>Total Investment:</span>
+                    <span class="highlight">$900</span>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="calc-line">
+                    <span>Breakdown Options:</span>
+                    <span></span>
+                </div>
+                <div class="divider"></div>
+                <div class="calc-line">
+                    <span>6x 14g @ $250</span>
+                    <span>$1,500</span>
+                </div>
+                <div class="calc-line">
+                    <span>Profit:</span>
+                    <span class="highlight">$600 (67%)</span>
+                </div>
+                <div class="divider"></div>
+                <div class="calc-line">
+                    <span>12x 7g @ $130</span>
+                    <span>$1,560</span>
+                </div>
+                <div class="calc-line">
+                    <span>Profit:</span>
+                    <span class="highlight">$660 (73%)</span>
+                </div>
+                <div class="divider"></div>
+                <div class="calc-line">
+                    <span>24x 3.5g @ $70</span>
+                    <span>$1,680</span>
+                </div>
+                <div class="calc-line">
+                    <span>Profit:</span>
+                    <span class="highlight">$780 (87%)</span>
+                </div>
+            </div>
+
+            <div class="footer">
+                Best margins: 3.5g units (87%)
+            </div>
+        </div>
+    </div>
+</body>
+</html>
