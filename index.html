@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skittles Menu Card</title>
+    <title>Skittles - Menu & Calculator</title>
     <style>
         * {
             margin: 0;
@@ -13,214 +13,413 @@
 
         body {
             min-height: 100vh;
-            background: #0a0e27;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            background: #0a0a0a;
+            color: #ffffff;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 40px 20px;
         }
 
-        .container {
+        .page-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 1200px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 32px;
+            border: 1px solid #2a2a2a;
+        }
+
+        .section-header {
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 1100px;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
         }
 
-        .card {
-            background: linear-gradient(135deg, #4a6fa5 0%, #3a5a8a 100%);
-            border-radius: 18px;
-            padding: 28px;
-            max-width: 520px;
-            width: 100%;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        .icon {
+            font-size: 32px;
         }
 
-        .header {
-            border-bottom: 1.5px solid rgba(255, 255, 255, 0.25);
-            padding-bottom: 15px;
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .section-subtitle {
+            color: #888;
+            font-size: 1rem;
+            margin-bottom: 28px;
+        }
+
+        .info-box {
+            background: #0f0f0f;
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            padding: 20px;
             margin-bottom: 20px;
         }
 
-        .title {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 3px;
-        }
-
-        .subtitle {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .info-section {
-            background: rgba(0, 0, 0, 0.15);
-            border-left: 3px solid rgba(255, 255, 255, 0.3);
-            padding: 14px 16px;
-            border-radius: 6px;
-            margin-bottom: 18px;
-        }
-
         .info-line {
-            color: #ffffff;
+            color: #ccc;
             font-size: 0.95rem;
-            line-height: 1.6;
-            margin: 5px 0;
-        }
-
-        .price-section {
-            background: rgba(0, 0, 0, 0.15);
-            border-left: 3px solid rgba(255, 255, 255, 0.3);
-            padding: 14px 16px;
-            border-radius: 6px;
-        }
-
-        .price-header {
-            font-size: 1rem;
-            color: #ffffff;
-            margin-bottom: 12px;
-            font-weight: 500;
+            line-height: 1.8;
+            margin: 6px 0;
         }
 
         .price-item {
-            color: #ffffff;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin: 4px 0;
-            padding-left: 5px;
+            color: #ccc;
+            font-size: 1rem;
+            line-height: 1.9;
+            margin: 8px 0;
         }
 
-        .footer {
-            color: rgba(255, 255, 255, 0.65);
+        .footer-note {
+            color: #666;
             font-size: 0.9rem;
-            margin-top: 18px;
-            text-align: left;
+            margin-top: 20px;
         }
 
-        /* Profit Card Styling */
-        .profit-card {
-            background: linear-gradient(135deg, #3a5a8a 0%, #2a4a7a 100%);
-        }
-
-        .calc-line {
+        /* Static Breakdown Section */
+        .breakdown-row {
             display: flex;
             justify-content: space-between;
-            color: #ffffff;
+            align-items: center;
+            padding: 12px 0;
+            color: #ccc;
             font-size: 0.95rem;
-            margin: 8px 0;
-            line-height: 1.5;
         }
 
-        .calc-line.bold {
+        .breakdown-row.header {
+            font-size: 1rem;
+            color: #fff;
+            font-weight: 500;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 14px;
+            margin-bottom: 10px;
+        }
+
+        .breakdown-row.total {
+            border-top: 1px solid #2a2a2a;
+            padding-top: 14px;
+            margin-top: 10px;
             font-weight: 600;
-            padding-top: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            margin-top: 12px;
         }
 
-        .highlight {
+        .breakdown-value {
+            text-align: right;
+        }
+
+        .breakdown-value.highlight {
             color: #ffd700;
+            font-weight: 600;
+        }
+
+        .breakdown-group {
+            margin: 16px 0;
+            padding: 16px 0;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        .breakdown-group:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        /* Calculator Section */
+        .input-group {
+            margin: 18px 0;
+        }
+
+        .input-label {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 13px 16px;
+            background: #0f0f0f;
+            border: 1px solid #2a2a2a;
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .input-field::placeholder {
+            color: #555;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #ffd700;
+            background: #121212;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .calc-button {
+            width: 100%;
+            padding: 15px;
+            background: #ffd700;
+            border: none;
+            border-radius: 6px;
+            color: #000;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .calc-button:hover {
+            background: #ffed4e;
+            transform: translateY(-1px);
+        }
+
+        .calc-button:active {
+            transform: translateY(0);
+        }
+
+        .results-box {
+            margin-top: 24px;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        .result-row.highlight {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.05rem;
+            border-top: 1px solid #2a2a2a;
+            padding-top: 16px;
+            margin-top: 10px;
+        }
+
+        .result-value {
+            color: #ffd700;
+            font-weight: 600;
         }
 
         .divider {
             height: 1px;
-            background: rgba(255, 255, 255, 0.15);
-            margin: 15px 0;
+            background: #2a2a2a;
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Menu Card -->
-        <div class="card">
-            <div class="header">
-                <div class="title">🍬 Skittles</div>
-                <div class="subtitle">Exotic Grade</div>
+    <div class="page-container">
+        <div class="grid-container">
+            <!-- Section 1: Menu -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="icon">🍬</div>
+                    <div class="section-title">Skittles</div>
+                </div>
+                <div class="section-subtitle">Exotic Grade</div>
+
+                <div class="info-box">
+                    <div class="info-line">🌈 Hybrid • Sweet Fruity Candy</div>
+                    <div class="info-line">🇦🇺 Premium - 22-26% THC</div>
+                    <div class="info-line">✨ Euphoric • Uplifting • Creative</div>
+                    <div class="info-line">✅ Fresh Stock • Top Shelf</div>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-line" style="color: #fff; font-weight: 500; margin-bottom: 10px;">💰 Prices</div>
+                    <div class="price-item">14g - $250</div>
+                    <div class="price-item">7g - $130</div>
+                    <div class="price-item">3.5g - $70</div>
+                    <div class="price-item">1.5g - $40</div>
+                </div>
+
+                <div class="footer-note">Message for ++</div>
             </div>
 
-            <div class="info-section">
-                <div class="info-line">🌈 Hybrid • Sweet Fruity Candy Flavor</div>
-                <div class="info-line">🇦🇺 Premium Quality - 22-26% THC</div>
-                <div class="info-line">✨ Euphoric • Uplifting • Creative Buzz</div>
-                <div class="info-line">✅ Fresh Stock • Top Shelf</div>
+            <!-- Section 2: Static Breakdown -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="icon">💹</div>
+                    <div class="section-title">Profit Analysis</div>
+                </div>
+                <div class="section-subtitle">3oz Breakdown</div>
+
+                <div class="info-box">
+                    <div class="breakdown-row">
+                        <span>Cost per oz:</span>
+                        <span class="breakdown-value">$300</span>
+                    </div>
+                    <div class="breakdown-row">
+                        <span>Total ounces:</span>
+                        <span class="breakdown-value">3oz (84g)</span>
+                    </div>
+                    <div class="breakdown-row total">
+                        <span>Total Investment:</span>
+                        <span class="breakdown-value highlight">$900</span>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <div class="breakdown-row header">
+                        <span>Breakdown Options</span>
+                    </div>
+
+                    <div class="breakdown-group">
+                        <div class="breakdown-row">
+                            <span>6x 14g @ $250</span>
+                            <span class="breakdown-value">$1,500</span>
+                        </div>
+                        <div class="breakdown-row">
+                            <span>Profit:</span>
+                            <span class="breakdown-value highlight">$600 (67%)</span>
+                        </div>
+                    </div>
+
+                    <div class="breakdown-group">
+                        <div class="breakdown-row">
+                            <span>12x 7g @ $130</span>
+                            <span class="breakdown-value">$1,560</span>
+                        </div>
+                        <div class="breakdown-row">
+                            <span>Profit:</span>
+                            <span class="breakdown-value highlight">$660 (73%)</span>
+                        </div>
+                    </div>
+
+                    <div class="breakdown-group">
+                        <div class="breakdown-row">
+                            <span>24x 3.5g @ $70</span>
+                            <span class="breakdown-value">$1,680</span>
+                        </div>
+                        <div class="breakdown-row">
+                            <span>Profit:</span>
+                            <span class="breakdown-value highlight">$780 (87%)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-note">Best margins: 3.5g units (87%)</div>
             </div>
 
-            <div class="price-section">
-                <div class="price-header">💰 Prices:</div>
-                <div class="price-item">▫️ 14g - $250</div>
-                <div class="price-item">▫️ 7g - $130</div>
-                <div class="price-item">▫️ 3.5g - $70</div>
-                <div class="price-item">▫️ 1.5g - $40</div>
-            </div>
+            <!-- Section 3: Calculator -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="icon">🧮</div>
+                    <div class="section-title">Calculator</div>
+                </div>
+                <div class="section-subtitle">Custom Profit Calculator</div>
 
-            <div class="footer">
-                Message for ++
-            </div>
-        </div>
+                <div class="info-box">
+                    <div class="input-group">
+                        <label class="input-label">Total grams purchased</label>
+                        <input type="number" id="totalGrams" class="input-field" placeholder="e.g., 84" step="0.1">
+                    </div>
 
-        <!-- Profit Calculator Card -->
-        <div class="card profit-card">
-            <div class="header">
-                <div class="title">💹 Profit Analysis</div>
-                <div class="subtitle">3oz Breakdown</div>
-            </div>
+                    <div class="input-group">
+                        <label class="input-label">Total cost paid</label>
+                        <input type="number" id="costPrice" class="input-field" placeholder="e.g., 900" step="0.01">
+                    </div>
 
-            <div class="info-section">
-                <div class="calc-line">
-                    <span>Cost per oz:</span>
-                    <span>$300</span>
-                </div>
-                <div class="calc-line">
-                    <span>Total ounces:</span>
-                    <span>3oz (84g)</span>
-                </div>
-                <div class="calc-line bold">
-                    <span>Total Investment:</span>
-                    <span class="highlight">$900</span>
-                </div>
-            </div>
+                    <div class="divider"></div>
 
-            <div class="info-section">
-                <div class="calc-line">
-                    <span>Breakdown Options:</span>
-                    <span></span>
-                </div>
-                <div class="divider"></div>
-                <div class="calc-line">
-                    <span>6x 14g @ $250</span>
-                    <span>$1,500</span>
-                </div>
-                <div class="calc-line">
-                    <span>Profit:</span>
-                    <span class="highlight">$600 (67%)</span>
-                </div>
-                <div class="divider"></div>
-                <div class="calc-line">
-                    <span>12x 7g @ $130</span>
-                    <span>$1,560</span>
-                </div>
-                <div class="calc-line">
-                    <span>Profit:</span>
-                    <span class="highlight">$660 (73%)</span>
-                </div>
-                <div class="divider"></div>
-                <div class="calc-line">
-                    <span>24x 3.5g @ $70</span>
-                    <span>$1,680</span>
-                </div>
-                <div class="calc-line">
-                    <span>Profit:</span>
-                    <span class="highlight">$780 (87%)</span>
-                </div>
-            </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label class="input-label">Grams per unit</label>
+                            <input type="number" id="unitSize" class="input-field" placeholder="e.g., 7" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Price per unit</label>
+                            <input type="number" id="sellPrice" class="input-field" placeholder="e.g., 130" step="0.01">
+                        </div>
+                    </div>
 
-            <div class="footer">
-                Best margins: 3.5g units (87%)
+                    <button class="calc-button" onclick="calculateProfit()">Calculate</button>
+                </div>
+
+                <div class="results-box" id="results" style="display: none;">
+                    <div class="info-box">
+                        <div class="result-row">
+                            <span>Total units:</span>
+                            <span class="result-value" id="totalUnits">-</span>
+                        </div>
+                        <div class="result-row">
+                            <span>Total revenue:</span>
+                            <span class="result-value" id="totalRevenue">-</span>
+                        </div>
+                        <div class="result-row highlight">
+                            <span>Your profit:</span>
+                            <span class="result-value" id="totalProfit">-</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function calculateProfit() {
+            const totalGrams = parseFloat(document.getElementById('totalGrams').value);
+            const costPrice = parseFloat(document.getElementById('costPrice').value);
+            const unitSize = parseFloat(document.getElementById('unitSize').value);
+            const sellPrice = parseFloat(document.getElementById('sellPrice').value);
+
+            if (!totalGrams || !costPrice || !unitSize || !sellPrice) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            if (totalGrams <= 0 || costPrice <= 0 || unitSize <= 0 || sellPrice <= 0) {
+                alert('All values must be greater than 0');
+                return;
+            }
+
+            const totalUnits = Math.floor(totalGrams / unitSize);
+            const totalRevenue = totalUnits * sellPrice;
+            const totalProfit = totalRevenue - costPrice;
+            const profitMargin = ((totalProfit / costPrice) * 100).toFixed(0);
+
+            document.getElementById('totalUnits').textContent = totalUnits;
+            document.getElementById('totalRevenue').textContent = '$' + totalRevenue.toLocaleString();
+            document.getElementById('totalProfit').textContent = '$' + totalProfit.toLocaleString() + ' (' + profitMargin + '%)';
+
+            document.getElementById('results').style.display = 'block';
+        }
+
+        document.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                calculateProfit();
+            }
+        });
+    </script>
 </body>
 </html>
